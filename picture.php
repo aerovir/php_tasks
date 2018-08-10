@@ -1,4 +1,5 @@
 <?php
+// Вычисляет общую сумму пикселей в картинке(jpg, но можно модернезировать и для png, bmp, etc) и количество самых тёмных пикселей.
 $im = imagecreatefromjpeg("img.jpg");
 
 $width = imagesx ($im);
