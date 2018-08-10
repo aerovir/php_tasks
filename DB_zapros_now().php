@@ -1,4 +1,5 @@
 <?php
+// Запрос с использованием функции NOW(время "сейчас"), 
 
 define('DB_HOST', 'localhost');
 define('DB_USER', 'root');
