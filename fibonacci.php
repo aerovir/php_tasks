@@ -1,4 +1,6 @@
 <?php
+// Выводит сумму четных чисел членов последовательности Фибоначчи до 10000
+
 function fibonacci($n,$first = 0,$second = 1)
 {
     $fib = [$first,$second];
