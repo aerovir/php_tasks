@@ -2,7 +2,7 @@
 
 define('DB_HOST', 'localhost');
 define('DB_USER', 'root');
-define('DB_PASSWORD', '123456');
+define('DB_PASSWORD', '');
 define('DB_NAME', 'users');
 
 $mysqli = @new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
@@ -13,7 +13,7 @@ $result_set1 = $mysqli->query('SELECT name, if((DAYOFYEAR(birthday)<=DAYOFYEAR(\
 DAYOFYEAR(\'2018-12-31\') - DAYOFYEAR(\'2018-05-16\') + DAYOFYEAR(birthday),
 DAYOFYEAR(birthday) - DAYOFYEAR(\'2018-05-16\')) as `days` FROM users
 WHERE if((DAYOFYEAR(birthday)<=DAYOFYEAR(\'2018-05-16\')), DAYOFYEAR(\'2018-12-31\') - DAYOFYEAR(\'2018-05-16\') + DAYOFYEAR(birthday), DAYOFYEAR(birthday) - DAYOFYEAR(\'2018-05-16\'))
-BETWEEN 0 AND 30 ORDER BY `days` DESC ');
+BETWEEN 0 AND 30 ORDER BY `days` DESC ');//Запрос для выведения дней рождений пользоватиелей в течении 30 дней с убыванием дней до дня рождения
 
 $result_set2 = $mysqli->query('SELECT name, birthday FROM users 
 WHERE ( date_format(\'2018-05-16\'+interval 30 day,\'%m-%d\')>date_format(birthday,\'%m-%d\') 
@@ -23,7 +23,9 @@ AND date_format(\'2018-05-16\',\'%m\')=\'12\'
 AND ( date_format(\'2018-05-16\'+interval 30 day,\'%m-%d\')>date_format(birthday,\'%m-%d\') 
 OR ( date_format(\'2018-05-16\',\'%m-%d\')<date_format(birthday, \'%m-%d\') 
 AND \'12-31\'>=date_format(birthday,\'%m-%d\') ) ) ) 
-ORDER BY date_format(birthday, \'%m-%d\') DESC');
+ORDER BY date_format(birthday, \'%m-%d\') DESC');// запрос для выведения даты дней рождений пользователей в течении 30 дней. 
+
+// В обоих запросах учтено окончание и начало года, високосный год.
 
 $table1 = [];
 $table2 = [];
