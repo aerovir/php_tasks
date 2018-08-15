@@ -1,30 +1,6 @@
 <?php
-include 'simple_html_dom.php';
+include 'libs/simple_html_dom.php';
 
-$link = 'http://lubematch.shell.com/ru/ru/equipment/100_2_8i_avant_001755';
+$html = file_get_contents('https://www.ozon.ru/catalog/1137439/?store=1,0');
 
-$data = file_get_html($link);
-
-$result = array();
-
-foreach($data->find('td.application') as $a){
-
-    $result['application'][] =  $a->plaintext;
-
-}
-
-foreach($data->find('td.recommendation') as $a){
-
-    $result['recommendation'][] =  $a->plaintext;
-}
-
-foreach($data->find('td.capacity') as $a){
-
-    $result['capacity'][] =  $a->plaintext;
-}
-
-
-
-echo "<pre>";
-print_r($result);
-echo "</pre>";
+echo $html;
